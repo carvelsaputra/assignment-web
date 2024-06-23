@@ -28,17 +28,16 @@ const onSubmit = function (data: UserBodyRequest) {
       username: data.username,
       password: data.password,
     })
-    .then((res) => {
-      console.log("success", res);
+    .then((res: any) => {
       title.value = "Success";
       icon.value = "mdi-checkbox-marked-circle-outline";
       message.value = "User Added";
       dialog.value = true;
       isDone.value = false;
+      navigateTo({ path: "/login" });
     })
     .catch((e) => {
-      console.log("failed", e);
-      message.value = e.response.data;
+      message.value = e.message;
       title.value = "Failed";
       icon.value = "mdi-message-alert";
       dialog.value = true;
